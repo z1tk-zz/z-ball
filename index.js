@@ -15,7 +15,7 @@ const shootAudio = new Audio('./audio/shoot.mp3')
 const enemyHitAudio = new Audio('./audio/enemyHit.mp3')
 const enemyEliminatedAudio = new Audio('./audio/enemyEliminated.mp3')
 const obtainPowerUpAudio = new Audio('./audio/obtainPowerUp.mp3')
-const backgroundMusicAudio = new Audio('./audio/backgroundMusic.mp3')
+const backgroundMusicAudio = new Audio('./audio/musicccc.mp3')
 backgroundMusicAudio.loop = true
 
 const scene = {
