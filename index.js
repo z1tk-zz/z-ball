@@ -514,7 +514,7 @@ function animate() {
           scoreEl.innerHTML = score
           if (score > parseInt(localStorage.getItem("highscore"))) {
             localStorage.setItem("highscore", score)
-          } if (localStorage.getItem("highscore") = null) {
+          } ifelse (localStorage.getItem("highscore") = null) {
             localStorage.setItem("highscore", 100)
           } else {
             alert("There seems to be something wrong with your game...Try reloading.")
@@ -538,7 +538,7 @@ function animate() {
           scoreEl.innerHTML = score
           if (score > parseInt(localStorage.getItem("highscore"))) {
             localStorage.setItem("highscore", score)
-          } if (localStorage.getItem("highscore") = null) {
+          } ifelse (localStorage.getItem("highscore") = null) {
             localStorage.setItem("highscore", 250)
           } else {
             alert("There seems to be something wrong with your game...Try reloading.")
