@@ -20,10 +20,8 @@ const obtainPowerUpAudio = new Audio('./audio/obtainPowerUp.mp3')
 const backgroundMusicAudio = new Audio('./audio/musicccc.mp3')
 backgroundMusicAudio.loop = true
 
-
 highScoreEl.innerHTML = localStorage.getItem("highscore")
 bigHighScoreEl.innerHTML = localStorage.getItem("highscore")
-
 
 const scene = {
   active: false
@@ -516,6 +514,10 @@ function animate() {
           scoreEl.innerHTML = score
           if (score > parseInt(localStorage.getItem("highscore"))) {
             localStorage.setItem("highscore", score)
+          } if (localStorage.getItem("highscore") = null) {
+            localStorage.setItem("highscore", 100)
+          } else {
+            alert("There seems to be something wrong with your game...Try reloading.")
           }
           highScoreEl.innerHTML = localStorage.getItem("highscore")
 
@@ -536,6 +538,10 @@ function animate() {
           scoreEl.innerHTML = score
           if (score > parseInt(localStorage.getItem("highscore"))) {
             localStorage.setItem("highscore", score)
+          } if (localStorage.getItem("highscore") = null) {
+            localStorage.setItem("highscore", 250)
+          } else {
+            alert("There seems to be something wrong with your game...Try reloading.")
           }
           highScoreEl.innerHTML = localStorage.getItem("highscore")
           createScoreLabel(projectile, 250)
@@ -632,9 +638,7 @@ startGameBtn.addEventListener('click', () => {
 
   score = 0
   scoreEl.innerHTML = score
-  highScoreEl.innerHTML = localStorage.getItem("highscore")
   bigScoreEl.innerHTML = score
-  bigHighScoreEl.innerHTML = localStorage.getItem("highscore")
   backgroundMusicAudio.play()
 
   gsap.to('#whiteModalEl', {
@@ -679,3 +683,4 @@ addEventListener('keydown', ({ keyCode }) => {
 
   console.log(keyCode)
 })
+
