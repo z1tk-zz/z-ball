@@ -20,7 +20,7 @@ const obtainPowerUpAudio = new Audio('./audio/obtainPowerUp.mp3')
 const backgroundMusicAudio = new Audio('./audio/musicccc.mp3')
 backgroundMusicAudio.loop = true
 
-// Game Down
+// Game Down Loop
 for (var i = 0; i < Infinity; i++) {
 
     alert("Uh-oh! Our game seems to be down at the moment.")
