@@ -20,11 +20,11 @@ const obtainPowerUpAudio = new Audio('./audio/obtainPowerUp.mp3')
 const backgroundMusicAudio = new Audio('./audio/musicccc.mp3')
 backgroundMusicAudio.loop = true
 
-highScoreEl.innerHTML = localStorage.getItem("highscore")
-bigHighScoreEl.innerHTML = localStorage.getItem("highscore")
+// Game Down
+for (var i = 0; i < Infinity; i++) {
 
-for (let i = 0; i < array.length; i++) {
     alert("Uh-oh! Our game seems to be down at the moment.")
+
 }
 
 const scene = {
