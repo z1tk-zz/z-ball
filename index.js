@@ -5,9 +5,11 @@ canvas.width = innerWidth
 canvas.height = innerHeight
 
 const scoreEl = document.querySelector('#scoreEl')
+const highScoreEl = document.querySelector('#scoreElHigh')
 const startGameBtn = document.querySelector('#startGameBtn')
 const modalEl = document.querySelector('#modalEl')
 const bigScoreEl = document.querySelector('#bigScoreEl')
+const bigHighScoreEl = document.querySelector("#bigScoreElHigh")
 
 const startGameAudio = new Audio('./audio/startGame.mp3')
 const endGameAudio = new Audio('./audio/endGame.mp3')
@@ -17,6 +19,8 @@ const enemyEliminatedAudio = new Audio('./audio/enemyEliminated.mp3')
 const obtainPowerUpAudio = new Audio('./audio/obtainPowerUp.mp3')
 const backgroundMusicAudio = new Audio('./audio/musicccc.mp3')
 backgroundMusicAudio.loop = true
+
+localStorage.setItem("highscore", 0)
 
 const scene = {
   active: false
@@ -291,31 +295,36 @@ function init() {
   }
 }
 
+
+
 function spawnEnemies() {
-  const radius = Math.random() * (30 - 4) + 4
+  setTimeout(() => {
+    const radius = Math.random() * (30 - 4) + 4
 
-  let x
-  let y
+    let x
+    let y
 
-  if (Math.random() < 0.5) {
-    x = Math.random() < 0.5 ? 0 - radius : canvas.width + radius
-    y = Math.random() * canvas.height
-  } else {
-    x = Math.random() * canvas.width
-    y = Math.random() < 0.5 ? 0 - radius : canvas.height + radius
-  }
+    if (Math.random() < 0.5) {
+      x = Math.random() < 0.5 ? 0 - radius : canvas.width + radius
+      y = Math.random() * canvas.height
+    } else {
+      x = Math.random() * canvas.width
+      y = Math.random() < 0.5 ? 0 - radius : canvas.height + radius
+    }
 
-  const color = `hsl(${Math.random() * 360}, 50%, 50%)`
+    const color = `hsl(${Math.random() * 360}, 50%, 50%)`
 
-  const angle = Math.atan2(canvas.height / 2 - y, canvas.width / 2 - x)
+    const angle = Math.atan2(canvas.height / 2 - y, canvas.width / 2 - x)
 
-  const velocity = {
-    x: Math.cos(angle),
-    y: Math.sin(angle)
-  }
-
-  enemies.push(new Enemy(x, y, radius, color, velocity))
+    const velocity = {
+      x: Math.cos(angle),
+      y: Math.sin(angle)
+    }
+      
+     enemies.push(new Enemy(x, y, radius, color, velocity))
+  }, 3000);
 }
+  
 
 function spawnPowerUps() {
   let x
@@ -343,8 +352,8 @@ function createScoreLabel(projectile, score) {
   const scoreLabel = document.createElement('label')
   scoreLabel.innerHTML = score
   scoreLabel.style.position = 'absolute'
+  scoreLabel.style.fontFamily = 'Arial'
   scoreLabel.style.color = 'white'
-  scoreLabel.style.userSelect = 'none'
   scoreLabel.style.left = projectile.x
   scoreLabel.style.top = projectile.y
   document.body.appendChild(scoreLabel)
@@ -461,6 +470,7 @@ function animate() {
       cancelAnimationFrame(animationId)
       modalEl.style.display = 'flex'
       bigScoreEl.innerHTML = score
+      bigHighScoreEl.innerHTML = localStorage.getItem("highscore")
       endGameAudio.play()
       scene.active = false
 
@@ -501,6 +511,11 @@ function animate() {
           // increase our score
           score += 100
           scoreEl.innerHTML = score
+          if (score > parseInt(localStorage.getItem("highscore"))) {
+            localStorage.removeItem("highscore")
+            localStorage.setItem("highscore", score)
+          }
+          highScoreEl.innerHTML = localStorage.getItem("highscore")
 
           createScoreLabel(projectile, 100)
 
@@ -517,6 +532,11 @@ function animate() {
           // remove from scene altogether
           score += 250
           scoreEl.innerHTML = score
+          if (score > parseInt(localStorage.getItem("highscore"))) {
+            localStorage.removeItem("highscore")
+            localStorage.setItem("highscore", score)
+          }
+          highScoreEl.innerHTML = localStorage.getItem("highscore")
           createScoreLabel(projectile, 250)
 
           // change backgroundParticle colors
