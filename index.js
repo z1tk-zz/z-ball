@@ -23,6 +23,10 @@ backgroundMusicAudio.loop = true
 highScoreEl.innerHTML = localStorage.getItem("highscore")
 bigHighScoreEl.innerHTML = localStorage.getItem("highscore")
 
+for (let i = 0; i < array.length; i++) {
+    alert("Uh-oh! Our game seems to be down at the moment.")
+}
+
 const scene = {
   active: false
 }
